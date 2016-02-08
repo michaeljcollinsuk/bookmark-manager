@@ -1,6 +1,6 @@
 # Bookmark Manager
 
-<h3> User Stories
+<h3> User Stories </h3>
 
 ```
 As a user
