@@ -3,6 +3,9 @@ require_relative 'models/link.rb'
 
 class BookmarkManager < Sinatra::Base
 
+  ENV['RACK_ENV'] ||= 'development'
+  # set :environment, :development
+
   get '/' do
     'Hello BookmarkManager!'
   end
