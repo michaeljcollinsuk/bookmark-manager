@@ -7,7 +7,7 @@ class BookmarkManager < Sinatra::Base
   # set :environment, :development
 
   get '/' do
-    'Hello BookmarkManager!'
+    redirect '/links'
   end
 
   get '/links' do
