@@ -15,3 +15,7 @@ namespace :db do
     puts "Auto-migrate complete (data was lost)"
   end
 end
+
+# $ rake db:auto_upgrade RACK_ENV=test
+# $ rake db:auto_upgrade # Default RACK_ENV is development so we don't need to be explicit.
+# $ heroku run rake db:auto_upgrade # Default RACK_ENV on heroku is 'production'
