@@ -12,17 +12,25 @@ feature 'Signing up and user accounts' do
     expect { sign_up(password_confirmation: 'wrong') }
     .not_to change(User, :count)
     expect(current_path).to eq('/users')
-    expect(page).to have_content('Passwords do not match')
+    expect(page).to have_content('Password does not match the confirmation')
     expect(page).not_to have_content('Welcome, evil_kitty@dogslife.com')
   end
 
   scenario 'user cannot sign up when email not entered' do
-    expect { sign_up(email: '') }.not_to change(User, :count)
+    expect { sign_up(email: nil) }.not_to change(User, :count)
     expect(current_path).to eq('/users')
+    expect(page).to have_content('Email must not be blank')
   end
 
-  scenario 'user cannot sign up with invalide email format' do
+  scenario 'user cannot sign up with invalid email format' do
     expect { sign_up(email: 'wrong.format') }.not_to change(User, :count)
     expect(current_path).to eq('/users')
+    expect(page).to have_content('Email has an invalid format')
+  end
+
+  scenario 'user cannot sign up with an existing email' do
+    sign_up
+    expect { sign_up }.not_to change(User, :count)
+    expect(page).to have_content('Email is already taken')
   end
 end
