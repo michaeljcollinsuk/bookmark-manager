@@ -50,7 +50,8 @@ class BookmarkManager < Sinatra::Base
     redirect '/links'
   end
 
-  post '/links/:name' do
+  # FIXME: needs to be a GET request
+  post '/links/:tag_name' do
     tag = Tag.first(name: params[:search_tag])
     @links = tag ? tag.links : []
     # redirect '/links'
