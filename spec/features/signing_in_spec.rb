@@ -17,7 +17,8 @@ feature 'User sign in' do
   scenario 'with incorrect credentials' do
     sign_in(user.email, 'incorrect123')
 
-    expect(current_path).to eq('/sessions/new')
+    expect(current_path).to eq('/sessions')
     expect(page).not_to have_content("Welcome, #{user.email}")
+    expect(page).to have_content('The email or password is incorrect')
   end
 end
