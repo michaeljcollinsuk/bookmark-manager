@@ -1,5 +1,4 @@
 require 'spec_helper'
-require './app/app.rb'
 
 feature 'Signing up and user accounts' do
   scenario 'new user signs up' do
