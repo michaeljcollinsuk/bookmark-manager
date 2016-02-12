@@ -18,6 +18,10 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
+  get '/' do
+    redirect '/users/new'
+  end
+
 
   get '/links' do
     @links = Link.all
