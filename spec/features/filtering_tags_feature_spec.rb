@@ -1,21 +1,16 @@
 require 'spec_helper'
-require './app/app.rb'
-
 
 feature 'Filtering and viewing tags' do
 
   scenario 'filtering links with certain tags' do
-
-    create_links('www.facebook.com', 'Facebook', 'bubbles')
-    create_links('www.somewhere.com', 'Somewhere Other Than Here', 'bubbles')
-    create_links('www.somewhere_old.com', 'Somewhere in the past', 'history')
-    create_links('www.wordpress.com', 'Wordpress', 'blog')
-
+    create_link('www.facebook.com', 'Facebook', 'bubbles')
+    create_link('www.somewhere.com', 'Somewhere Other Than Here', 'bubbles')
+    create_link('www.somewhere_old.com', 'Somewhere in the past', 'history')
+    create_link('www.wordpress.com', 'Wordpress', 'blog')
 
     visit '/links'
     fill_in 'search_tag', with: 'bubbles'
     click_button("Search By Tag")
-
 
     expect(page.status_code).to eq 200
     within 'ul#links' do
@@ -25,5 +20,4 @@ feature 'Filtering and viewing tags' do
       expect(page).not_to have_content('Wordpress')
     end
   end
-
 end
