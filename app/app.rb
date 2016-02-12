@@ -16,10 +16,18 @@ class BookmarkManager < Sinatra::Base
     def current_user
       @current_user ||= User.get(session[:user_id])
     end
+
+    def signed_in?
+      !@current_user.nil?
+    end
   end
 
   get '/' do
-    redirect '/users/new'
+    if signed_in?
+      redirect '/links'
+    else
+      redirect '/users/new'
+    end
   end
 
 
