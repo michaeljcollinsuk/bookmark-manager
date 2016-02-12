@@ -23,7 +23,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/' do
-    if signed_in?
+    if signed_in? # not working currently
       redirect '/links'
     else
       redirect '/users/new'
